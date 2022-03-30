@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Basic Grammar</title>
+</head>
+<body>
+
+    <!-- Event Binding -->
+    <button onclick="eventBinding()">이벤트바인딩</button>
+
+    <!-- DOM Event Handler -->
+    <button id="btn">alert 버튼</button>
+
+    <!-- DOM Event Listener -->
+    <label for="username">User Name</label>
+    <input type="text" id="username" />
+    <em id="message"></em>
+    <em id="message2"></em>
+
+    
+</body>
+
+<script>
+
+    // Event binding ( 이벤트 바인딩 )
+    function eventBinding() {
+        alert('이벤트 바인딩 [더이상 사용되지 않음]');
+    }
+
+    // DOM Event Handler
+    let btn = document.getElementById('btn');
+
+    btn.onclick = function() {
+        alert('DOM Event Handler 이벤트 핸들러에 하나의 함수만 바인딩 할 수 있으며, 함수에 인수를 전달할 수 없는 단점');
+    }
+
+    // DOM Event Listener
+    /*
+        element.addEventListener('eventType', listener, [useCapture]);
+        element = 대상요소
+        'eventType' = 대상요소에 바인딩될 이벤트를 나타내는 문자열
+        listener = 호출될 함수명
+        useCapture = Capture 사용여부(true, false)
+        
+        아래 addEventListener처럼 element를 지정하지 않으면 click이벤트는 전역객체인 window에 바인딩된다.
+        blur = 요소가 포커스를 잃었을 때
+    */
+    addEventListener('click', function() {
+        alert('Event Listener를 이용하여 대상요소에 이벤트를 바인딩하고 해당 이벤트가 발생했을 때 실행될 콜백 함수를 지정한다.');
+    })
+
+    let elem = document.getElementById('username');
+
+    let msg = document.getElementById('message');
+
+    let msg2 = document.getElementById('message2');
+
+    elem.addEventListener('blur', function() {
+        alert('blur event occurred');
+
+        if(elem.value.length < 2) {
+            msg.innerHTML = '이름은 두자 이상이어야 한다.';
+        } else {
+            msg.innerHTML = '';
+        }
+    });
+
+    function foo() {
+        alert('click');
+    }
+
+    // (elem)대상요소를 클릭하면 (foo)호출된 함수명을 실행시켜라
+    elem.addEventListener('click', foo);
+
+    // 최소 이름 길이
+    const MIN_USER_NAME_LENGTH = 2;
+
+    function checkUserNameLength(n) {
+        alert('blur event !!!!!!!!');
+
+        if(elem.value.length < n) {
+            msg2.innerHTML = '이름은' + n + '자 이상이어야 합니다.';
+        } else {
+            msg2.innerHTML = '';
+        }
+    }
+
+    elem.addEventListener('blur', function() {
+        checkUserNameLength(MIN_USER_NAME_LENGTH);
+    });
+
+
+
+    let item = ["1번", "2번", "3번", "4번", "5번", "6번"];
+    for(let i = 0; i < item.length; i++) {
+
+    }
+</script>
+</html>
